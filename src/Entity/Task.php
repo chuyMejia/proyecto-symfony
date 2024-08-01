@@ -59,7 +59,7 @@ class Task
     /**
      * @var \Users
      *
-     * @ORM\ManyToOne(targetEntity="PP\Entity\User",inversedBy="tasks")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User",inversedBy="tasks")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })

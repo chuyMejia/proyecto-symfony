@@ -17,14 +17,30 @@
     </head>
     <body>
         {% block header %}
-        <h1>Tasks symfony</h1>
-        <ul>
-            <li><a href="{{ path('tasks') }}">Inicio</a></li>
-            <li><a href="">my Tasks</a></li>   
-            <li><a href="">Login</a></li>
-            <li><a href="{{ path('registro') }}">Registro</a></li>
-            
-        </ul>
+        <div id="header">
+            <h2>Tasks symfony</h2>
+            <ul id="menu">
+                
+                  {% if app.user %}
+                    <li><a href="{{ path('tasks') }}">Inicio</a></li>
+                    <li><a href="">my Tasks</a></li>   
+                    <li class="rigth"><a href="{{ path('logout') }}">Cerrar sesion</a></li>
+                    <li class="rigth"><a href="">{{ app.user.name ~ ' ' ~ app.user.surname }}</a></li>
+                   
+                    
+                  {% else %}
+
+                <li ><a href="{{ path('login') }}">Login</a></li>
+                <li ><a href="{{ path('registro') }}">Registro</a></li>    
+             {% endif %}        
+            </ul>
+        </div>
+        <div class="clearfix">
+        
+        </div>
+          {% if app.user %}
+        {{ dump(app.user) }}
+   {% endif %}
         {% endblock %}
         {% block body %}{% endblock %}
     </body>

@@ -80,9 +80,6 @@ public function detail($id){
     }
 
 
-   
-
-
     return $this->render('task/detail.html.twig', [
         'task' => $task
     ]);

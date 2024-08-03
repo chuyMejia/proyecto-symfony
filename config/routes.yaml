@@ -16,4 +16,9 @@ user_login:
 
 logout:
     path: /logout
+
+task_detail:
+  path: /tarea/{id}
+  controller: App\Controller\TaskController::detail
+
     

@@ -121,5 +121,46 @@ input[type="submit"]:hover{
 
 
 }
+table {
+    width: 100%;
+}
 
+
+table th,
+table td{
+    background: #eee;
+
+    padding: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-bottom: 1px solid #f6f6f6;
+    text-align: center;
+
+}
+
+table td{
+    background: #d0dbd1;
+}
+
+
+.buttons a{
+    text-decoration: none;
+    border: 1px solid #8f8f8f;
+    padding: 10px;
+    color: white;
+    border-radius: 0.3rem;
+   
+}
+
+.buttons .btn-edit{
+    background: #a4f7bd;
+}
+
+.buttons .btn-delete{
+    background: #ff8282;
+}
+
+.buttons .btn-show{
+    background: #ffd67d;
+}
 

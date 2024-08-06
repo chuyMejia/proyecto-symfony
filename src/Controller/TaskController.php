@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use App\Form\TaskType;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Task;
 use App\Entity\User;
@@ -64,7 +65,7 @@ public function detail2(Task $task = null)
 }
 
 
-
+//\
 public function detail($id){
 
     //load repository
@@ -82,6 +83,27 @@ public function detail($id){
 
     return $this->render('task/detail.html.twig', [
         'task' => $task
+    ]);
+
+}
+
+
+public function creation(Request $request){
+
+    $task = new Task();
+
+    $form = $this->createForm(TaskType::class, $task);
+
+    $form->handleRequest($request);
+
+    if($form->isSubmitted() && $form->isValid()){
+
+        var_dump($task);
+
+    }
+
+    return $this->render('task/creation.html.twig',[
+        'form'=>$form->createView()
     ]);
 
 }

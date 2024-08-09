@@ -45,3 +45,9 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+    
+    acces_control:
+        - { path: ^/tarea,roles: ROLE_USER }
+        - { path: ^/borrar-tarea,roles: ROLE_USER }
+        - { path: ^/crear-tarea,roles: ROLE_USER }
+        - { path: ^/,roles: ROLE_USER }

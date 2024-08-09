@@ -164,6 +164,31 @@ public function edit(Request $request, UserInterface $user, $id): Response
     ]);
 }
 
+public function delete(Request $request,UserInterface $user,$id){
+
+
+    $task = $this->getDoctrine()->getRepository(Task::class)->find($id);
+
+    if (!$task || !$user || $user->getId() !== $task->getUser()->getId()) {
+        return $this->redirectToRoute('tasks');
+    }
+
+   
+
+
+    $em = $this->getDoctrine()->getManager();
+    $em->remove($task);
+    $em->flush();
+
+    return $this->redirectToRoute('tasks');
+
+
+
+
+
+
+}
+
 
 
 }

@@ -32,7 +32,9 @@ body{
 
 input[type="text"],
 input[type="password"],
-input[type="email"]{
+input[type="email"],
+textarea,
+select{
     width: 70%;
     padding: 8px;
 }
@@ -151,6 +153,9 @@ table td{
     border-radius: 0.3rem;
    
 }
+.buttons{
+    width: 33%;
+}
 
 .buttons .btn-edit{
     background: #a4f7bd;
@@ -168,5 +173,9 @@ table td{
 
 .data-task{
     background: gray;
+}
+
+#task_complete{
+    display: flex !important;
 }
 

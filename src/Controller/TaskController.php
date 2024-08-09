@@ -2,15 +2,13 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use App\Form\TaskType;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Task;
-use App\Entity\User;
-
-
+use App\Form\TaskType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class TaskController extends AbstractController
 {
@@ -53,8 +51,10 @@ class TaskController extends AbstractController
      /**
  * @Route("/tarea/{id}", name="task_detail")
  */
-public function detail2(Task $task = null)
+public function detail2(Task $task )
 {
+
+
     if (!$task) {
         throw $this->createNotFoundException('Task not found');
     }
@@ -88,7 +88,7 @@ public function detail($id){
 }
 
 
-public function creation(Request $request){
+public function creation(Request $request, \Symfony\Component\Security\Core\User\UserInterface $user){
 
     $task = new Task();
 
@@ -98,14 +98,70 @@ public function creation(Request $request){
 
     if($form->isSubmitted() && $form->isValid()){
 
-        var_dump($task);
+        $task->setCreateAt(new \DateTime('now'));
+        $task->setUser($user);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($task);
+        $em->flush();
+
+        return $this->redirect(
+            $this->generateUrl('task_detail',['id'=> $task->getId()])
+        );
 
     }
 
     return $this->render('task/creation.html.twig',[
         'form'=>$form->createView()
+       
     ]);
 
+}
+
+
+
+    public function myTasks(UserInterface $user){
+       $tasks =  $user->getTasks();
+       //var_dump($tasks);
+
+       //die();
+       return $this->render('task/my-tasks.html.twig',[
+        'tasks' =>  $tasks
+       ]);
+
+    }
+
+    /**
+     * @Route("/editar-tarea/{id}", name="task_edit", methods={"GET", "POST"})
+     */
+   // src/Controller/TaskController.php
+
+public function edit(Request $request, UserInterface $user, $id): Response
+{
+    $task = $this->getDoctrine()->getRepository(Task::class)->find($id);
+
+    if (!$task || !$user || $user->getId() !== $task->getUser()->getId()) {
+        return $this->redirectToRoute('tasks');
+    }
+
+    $form = $this->createForm(TaskType::class, $task);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+       // $task->setCreateAt(new \DateTime('now'));
+      //  $task->setUser($user);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($task);
+        $em->flush();
+
+        return $this->redirectToRoute('task_detail', ['id' => $task->getId()]);
+    }
+
+    return $this->render('task/creation.html.twig', [
+        'edit' => true,
+        'form' => $form->createView(),
+    ]);
 }
 
 

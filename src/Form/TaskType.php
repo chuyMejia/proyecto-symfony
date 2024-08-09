@@ -21,16 +21,35 @@ class TaskType extends AbstractType
         ->add('priority', ChoiceType::class, [
             'label' => 'priority',
             'choices'=> array(
-                'high' => 'Alta',
-                'medium' => 'Media',
-                'Low' => 'Baja'
+                'Alta' => 'high',
+                'Medio' => 'medium',
+                'Baja' => 'Low'
             )
         ])
-        ->add('hours', TextType::class, [
-            'label' => 'Horas'
+        ->add('hours', ChoiceType::class, [
+            'label' => 'Horas',  
+            'choices'=> array(
+               '1' => 1,
+               '2' => 2,
+               '3' => 3,
+               '4' => 4,
+               '5' => 5,
+               '6' => 6,
+                )
+        ])
+        
+        ->add('complete', ChoiceType::class, [
+            'choices'  => [
+                'No' => false,
+                'Sí' => true,
+            ],
+            'expanded' => true,  // Muestra los valores como checkboxes   
+            'attr' => [
+                'style' => 'display: flex !important;',
+            ],      
         ])
         ->add('submit', SubmitType::class, [
-            'label' => 'Registrar'
+            'label' => 'Guardar'
         ]);
     }
 }

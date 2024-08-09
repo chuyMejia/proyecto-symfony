@@ -21,8 +21,21 @@ task_detail:
   path: /tarea/{id}
   controller: App\Controller\TaskController::detail
 
+task_edit:
+    path: /editar-tarea/{id}
+    controller: App\Controller\TaskController::edit
+    methods: [GET, POST]
+
+pureba:
+  path: /prueba
+  controller: App\Controller\TaskController::detail2
+
 
 task_creation:
   path: /crear-tarea
   controller: App\Controller\TaskController::creation
+
+my_task:
+  path: /mis-tareas
+  controller: App\Controller\TaskController::myTasks
     

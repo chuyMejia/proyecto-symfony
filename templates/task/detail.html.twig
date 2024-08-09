@@ -6,7 +6,14 @@
 
 
 <div class="example-wrapper">
-    <h2>{{ task.title }}</h2>
+    <h2>{{ task.title }}</h2> 
+{% if task.complete == 1 or task.complete == '1' %}
+        <p>Tarea completada!</p>
+    {% else %}
+        <!-- Aquí puedes poner el contenido que quieras mostrar si la condición no se cumple -->
+        <p>Tarea en curso!</p>
+    {% endif %}
+
         <p class="data-task">
             {{ task.user.name }} {{ task.user.surname }} | {{ task.createAt|date('d/m/y h:m') }} | {{ task.priority }} | {{ task.hours }}h
         </p>

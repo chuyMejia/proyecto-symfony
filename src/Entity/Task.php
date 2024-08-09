@@ -66,6 +66,29 @@ class Task
      */
     private $user;
 
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="complete", type="integer", nullable=true)
+     */
+
+    private $complete;
+
+    public function getComplete(): ?int
+    {
+        return $this->complete;
+    }
+
+
+    public function setComplete(?int $complete): self
+    {
+        $this->complete = $complete;
+
+        return $this;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

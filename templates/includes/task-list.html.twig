@@ -1,17 +1,31 @@
+
+
 {% if tasks|length >= 1 %}
 
  <table>
         <tr>
+            <th>Estatus</th>
             <th>Tarea</th>    
             <th>Prioridad</th>
             <th>Horas</th>
             <th>Actions</th>
+            
         </tr>
     
 
+
      {% for task in tasks %}
-        <tr>
-            <td>{{task.title}}</td>
+    
+
+
+        {% if task.complete == '1' %}
+          <tr class="complete" >
+             <td><i class="material-icons">check</i></td> 
+          {% else %}  
+          <tr class="no-complete">
+             <td><i class="material-icons">clear</i></td> 
+        {% endif %}
+           <td>{{task.title}}</td>
             <td>{{task.priority}}</td>
             <td>{{task.hours}}</td>
             <td class="buttons">
@@ -21,6 +35,8 @@
                     <a href="{{ path('task_delete', {'id': task.id}) }}" class="btn-delete">Delete</a>
                 {% endif %}
             </td>
+        
+           
         </tr>
         
         {% endfor %}

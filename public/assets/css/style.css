@@ -203,7 +203,6 @@ table td{
 
 
 
-
   .checkbox-wrapper-8 .tgl {
     display: none;
   }
@@ -263,6 +262,7 @@ table td{
   }
 
   .checkbox-wrapper-8 .tgl-skewed + .tgl-btn {
+    width: 140px;
     overflow: hidden;
     transform: skew(-10deg);
     -webkit-backface-visibility: hidden;

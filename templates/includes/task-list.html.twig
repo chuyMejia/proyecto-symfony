@@ -20,10 +20,11 @@
 
         {% if task.complete == '1' %}
           <tr class="complete" >
-             <td><i class="material-icons">check</i></td> 
+             
+             <td><i class="material-icons">clear</i></td>
           {% else %}  
           <tr class="no-complete">
-             <td><i class="material-icons">clear</i></td> 
+             <td><i class="material-icons">check</i></td> 
         {% endif %}
            <td>{{task.title}}</td>
             <td>{{task.priority}}</td>

@@ -10,15 +10,15 @@ $(document).ready(function() {
             // Puedes realizar acciones adicionales aquí, como mostrar u ocultar elementos
 
 
-            $('.complete').hide();
-            $('.no-complete').show();
+            $('.complete').hide('slow');
+            $('.no-complete').show('slow');
             
            
         } else {
             // Si el checkbox está desactivado
             console.log('Checkbox está desactivado');
-            $('.complete').show();
-            $('.no-complete').hide();
+            $('.complete').show('slow');
+            $('.no-complete').hide('slow');
             // Puedes realizar acciones adicionales aquí, como mostrar u ocultar elementos
            
         }
